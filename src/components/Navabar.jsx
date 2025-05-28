@@ -8,10 +8,30 @@ const Navabar = () => {
         <h1 className="text-3xl text-black">BookVault</h1>
       </div>
       <div className="flex items-center gap-[4rem] text-gray-500">
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/about'>About</NavLink>
-        <NavLink to='/books'>Books</NavLink>
-        <NavLink to='/add-book'>Add Book</NavLink>
+        <NavLink
+          className={(e) => (e.isActive ? "text-yellow-800" : "")}
+          to="/"
+        >
+          Home
+        </NavLink>
+        <NavLink
+          className={(e) => (e.isActive ? "text-yellow-800" : "")}
+          to="/about"
+        >
+          About
+        </NavLink>
+        <NavLink
+          className={(e) => (e.isActive ? "text-yellow-800" : "")}
+          to="/books"
+        >
+          Books
+        </NavLink>
+        <NavLink
+          className={(e) => (e.isActive ? "text-yellow-800" : "")}
+          to="/add-book"
+        >
+          Add Book
+        </NavLink>
       </div>
     </div>
   );

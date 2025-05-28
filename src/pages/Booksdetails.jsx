@@ -16,7 +16,7 @@ const Booksdetails = () => {
           style={{
             boxShadow: "0 10px 40px rgba(0, 0, 0, 0.3)",
           }}
-          className="w-[15rem] h-[20rem] overflow-hidden"
+          className="w-[15rem] h-[20rem] overflow-hidden hover:scale-110 duration-150 transition-all ease-linear"
         >
           <img
             className="w-full h-full object-cover object-top-right"
@@ -29,8 +29,8 @@ const Booksdetails = () => {
           <p className="text-[1rem]">{book.genre}</p>
         </div>
       </div>
-      <div className="w-full bg-[#F0EBCC] px-[10rem]">
-        <div className="w-full px-[10rem] py-[3rem] flex gap-[20rem] bg-amber-50 ">
+      <div className="w-full bg-[#F0EBCC] px-[8rem]">
+        <div className="w-full px-[10rem] py-[3rem] flex gap-[15rem] bg-amber-50 ">
           <div>
             <h1 className="w-[35rem]">{book.description}</h1>
           </div>

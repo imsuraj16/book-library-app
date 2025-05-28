@@ -11,6 +11,14 @@ const Books = () => {
     return filled + empty;
   };
 
+  if (books.length === 0) {
+    return (
+      <div>
+        <h1 className="text-[3rem] text-red-600">No books Found...</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full px-[4rem]">
       <h1 className="text-[4rem] py-[1rem]">
@@ -18,7 +26,7 @@ const Books = () => {
       </h1>
       <div className="flex gap-6 flex-wrap">
         {books.map((book) => (
-         <Singlebook book = {book} renderStars = {renderStars} key = {book.id}/>
+          <Singlebook book={book} renderStars={renderStars} key={book.id} />
         ))}
       </div>
     </div>
