@@ -3,7 +3,7 @@ import Quotes from "../components/Quotes";
 
 const Home = () => {
   return (
-    <div className="w-full px-[3rem] flex gap-[5rem]">
+    <div className="w-full px-[3rem] flex gap-[5rem] py-[1.5rem]">
       <div className="w-[50%] flex flex-col gap-[2rem]">
         <h1 className="text-[4rem]">Keep the story going...</h1>
         <p>

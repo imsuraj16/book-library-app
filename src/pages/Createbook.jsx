@@ -4,7 +4,7 @@ import { Bookcontext } from "../context/BookContext";
 import { nanoid } from "nanoid";
 
 const Createbook = () => {
-  const [books, setBooks] = useContext(Bookcontext);
+  const [setBooks] = useContext(Bookcontext);
 
   const {
     register,
@@ -60,8 +60,9 @@ const Createbook = () => {
                 type="text"
                 placeholder="Enter author name"
                 className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg"
-                {...register("author")}
+                {...register("author",{required : "Author should not be empty.."})}
               />
+              <small className="text-red-500 text-[0.8rem]">{errors?.author?.message}</small>
             </div>
 
             {/* ISBN and Publication Year Row */}
@@ -74,8 +75,9 @@ const Createbook = () => {
                   type="text"
                   placeholder="Enter ISBN"
                   className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg"
-                  {...register("isbn-no")}
+                  {...register("isbnno",{required : "ISBN should not be empty.."})}
                 />
+                <small className="text-red-500 text-[0.8rem]">{errors?.isbnno?.message}</small>
               </div>
               <div>
                 <label className="block text-[#8b6914] font-semibold mb-2 text-lg">
@@ -87,6 +89,7 @@ const Createbook = () => {
                   className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg"
                   {...register("publish",{required : "Publish yaer should not be empty.."})}
                 />
+                <small className="text-red-500 text-[0.8rem]">{errors?.publish?.message}</small>
               </div>
             </div>
 
@@ -98,7 +101,7 @@ const Createbook = () => {
                 </label>
                 <select
                   className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] text-lg"
-                  {...register("genre")}
+                  {...register("genre",{required : "Select genre..."})}
                 >
                   <option value="">Select genre</option>
                   <option value="fiction">Fiction</option>
@@ -112,6 +115,7 @@ const Createbook = () => {
                   <option value="self-help">Self Help</option>
                   <option value="technology">Technology</option>
                 </select>
+                <small className="text-red-500 text-[0.8rem]">{errors?.genre?.message}</small>
               </div>
               <div>
                 <label className="block text-[#8b6914] font-semibold mb-2 text-lg">
@@ -136,8 +140,9 @@ const Createbook = () => {
                   type="text"
                   placeholder="Enter publisher name"
                   className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg"
-                  {...register("publisher")}
+                  {...register("publisher",{required : "Publisher should not be empty.."})}
                 />
+                <small className="text-red-500 text-[0.8rem]">{errors?.publisher?.message}</small>
               </div>
               <div>
                 <label className="block text-[#8b6914] font-semibold mb-2 text-lg">
@@ -145,7 +150,7 @@ const Createbook = () => {
                 </label>
                 <select
                   className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] text-lg"
-                  {...register("language")}
+                  {...register("language",{required : "Select Language.."})}
                 >
                   <option value="">Select language</option>
                   <option value="english">English</option>
@@ -155,6 +160,7 @@ const Createbook = () => {
                   <option value="hindi">Hindi</option>
                   <option value="other">Other</option>
                 </select>
+                <small className="text-red-500 text-[0.8rem]">{errors?.language?.message}</small>
               </div>
             </div>
 
@@ -188,9 +194,10 @@ const Createbook = () => {
                 rows={4}
                 placeholder="Write a brief description or personal notes about this book..."
                 className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg resize-none"
-                {...register("description")}
+                {...register("description",{required : "Please enter desciption...."})}
               />
-            </div>
+              <small className="text-red-500 text-[0.8rem]">{errors?.description?.message}</small>
+            </div>  
 
             {/* Book Cover URL */}
             <div>
