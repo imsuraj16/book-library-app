@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Bookcontext } from "../context/BookContext";
 import { nanoid } from "nanoid";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Createbook = () => {
   const [books, setBooks] = useContext(Bookcontext);

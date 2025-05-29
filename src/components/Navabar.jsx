@@ -5,7 +5,7 @@ const Navabar = () => {
   return (
     <div className="w-full px-[4rem] flex items-center justify-between">
       <div>
-        <h1 className="text-3xl text-black">BookVault</h1>
+        <h1 className="text-3xl text-black"><span className="text-amber-700 text-[3rem]">Book</span>Vault</h1>
       </div>
       <div className="flex items-center gap-[4rem] text-gray-500">
         <NavLink
