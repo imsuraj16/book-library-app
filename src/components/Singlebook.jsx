@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 const Singlebook = ({book,renderStars}) => {
+
+  
   return (
     <div key={book.id} className="w-[18rem] p-4 rounded-xl shadow-lg">
             <div className="w-full h-[19rem] mb-4">

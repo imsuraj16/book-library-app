@@ -13,7 +13,7 @@ const Books = () => {
 
   if (books.length === 0) {
     return (
-      <div>
+      <div className="px-[4rem]"> 
         <h1 className="text-[3rem] text-red-600">No books Found...</h1>
       </div>
     );

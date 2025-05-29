@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Bookcontext } from "../context/BookContext";
 import { nanoid } from "nanoid";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Createbook = () => {
-  const [setBooks] = useContext(Bookcontext);
+  const [books, setBooks] = useContext(Bookcontext);
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -15,11 +18,14 @@ const Createbook = () => {
 
   const submitHandler = (data) => {
     data.id = nanoid();
-    setBooks((prev)=>[...prev,data])
-    reset()
+    // setBooks((prev)=>[...prev,data])
+    const copyData = [...books];
+    copyData.push(data);
+    setBooks(copyData);
+    localStorage.setItem('books',JSON.stringify(copyData))
+    reset();
+    navigate("/books");
   };
-  
-  
 
   return (
     <div className="min-h-screen bg-[#f0ebcc] py-8 px-4">
@@ -46,9 +52,13 @@ const Createbook = () => {
                 type="text"
                 placeholder="Enter book title"
                 className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg"
-                {...register("title",{required : "Book title should not be empty.."})}
+                {...register("title", {
+                  required: "Book title should not be empty..",
+                })}
               />
-              <small className="text-red-500 text-[0.8rem]">{errors?.title?.message}</small>
+              <small className="text-red-500 text-[0.8rem]">
+                {errors?.title?.message}
+              </small>
             </div>
 
             {/* Author */}
@@ -60,9 +70,13 @@ const Createbook = () => {
                 type="text"
                 placeholder="Enter author name"
                 className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg"
-                {...register("author",{required : "Author should not be empty.."})}
+                {...register("author", {
+                  required: "Author should not be empty..",
+                })}
               />
-              <small className="text-red-500 text-[0.8rem]">{errors?.author?.message}</small>
+              <small className="text-red-500 text-[0.8rem]">
+                {errors?.author?.message}
+              </small>
             </div>
 
             {/* ISBN and Publication Year Row */}
@@ -75,9 +89,13 @@ const Createbook = () => {
                   type="text"
                   placeholder="Enter ISBN"
                   className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg"
-                  {...register("isbnno",{required : "ISBN should not be empty.."})}
+                  {...register("isbnno", {
+                    required: "ISBN should not be empty..",
+                  })}
                 />
-                <small className="text-red-500 text-[0.8rem]">{errors?.isbnno?.message}</small>
+                <small className="text-red-500 text-[0.8rem]">
+                  {errors?.isbnno?.message}
+                </small>
               </div>
               <div>
                 <label className="block text-[#8b6914] font-semibold mb-2 text-lg">
@@ -87,9 +105,13 @@ const Createbook = () => {
                   type="number"
                   placeholder="2024"
                   className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg"
-                  {...register("publish",{required : "Publish yaer should not be empty.."})}
+                  {...register("publish", {
+                    required: "Publish yaer should not be empty..",
+                  })}
                 />
-                <small className="text-red-500 text-[0.8rem]">{errors?.publish?.message}</small>
+                <small className="text-red-500 text-[0.8rem]">
+                  {errors?.publish?.message}
+                </small>
               </div>
             </div>
 
@@ -101,7 +123,7 @@ const Createbook = () => {
                 </label>
                 <select
                   className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] text-lg"
-                  {...register("genre",{required : "Select genre..."})}
+                  {...register("genre", { required: "Select genre..." })}
                 >
                   <option value="">Select genre</option>
                   <option value="fiction">Fiction</option>
@@ -115,7 +137,9 @@ const Createbook = () => {
                   <option value="self-help">Self Help</option>
                   <option value="technology">Technology</option>
                 </select>
-                <small className="text-red-500 text-[0.8rem]">{errors?.genre?.message}</small>
+                <small className="text-red-500 text-[0.8rem]">
+                  {errors?.genre?.message}
+                </small>
               </div>
               <div>
                 <label className="block text-[#8b6914] font-semibold mb-2 text-lg">
@@ -140,9 +164,13 @@ const Createbook = () => {
                   type="text"
                   placeholder="Enter publisher name"
                   className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg"
-                  {...register("publisher",{required : "Publisher should not be empty.."})}
+                  {...register("publisher", {
+                    required: "Publisher should not be empty..",
+                  })}
                 />
-                <small className="text-red-500 text-[0.8rem]">{errors?.publisher?.message}</small>
+                <small className="text-red-500 text-[0.8rem]">
+                  {errors?.publisher?.message}
+                </small>
               </div>
               <div>
                 <label className="block text-[#8b6914] font-semibold mb-2 text-lg">
@@ -150,7 +178,7 @@ const Createbook = () => {
                 </label>
                 <select
                   className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] text-lg"
-                  {...register("language",{required : "Select Language.."})}
+                  {...register("language", { required: "Select Language.." })}
                 >
                   <option value="">Select language</option>
                   <option value="english">English</option>
@@ -160,7 +188,9 @@ const Createbook = () => {
                   <option value="hindi">Hindi</option>
                   <option value="other">Other</option>
                 </select>
-                <small className="text-red-500 text-[0.8rem]">{errors?.language?.message}</small>
+                <small className="text-red-500 text-[0.8rem]">
+                  {errors?.language?.message}
+                </small>
               </div>
             </div>
 
@@ -194,10 +224,14 @@ const Createbook = () => {
                 rows={4}
                 placeholder="Write a brief description or personal notes about this book..."
                 className="w-full px-4 py-3 rounded-xl border-2 border-[#e6d99c] bg-white focus:border-[#d4c55a] focus:outline-none focus:ring-2 focus:ring-[#d4c55a]/20 text-[#6b5b00] placeholder-[#a67c00]/60 text-lg resize-none"
-                {...register("description",{required : "Please enter desciption...."})}
+                {...register("description", {
+                  required: "Please enter desciption....",
+                })}
               />
-              <small className="text-red-500 text-[0.8rem]">{errors?.description?.message}</small>
-            </div>  
+              <small className="text-red-500 text-[0.8rem]">
+                {errors?.description?.message}
+              </small>
+            </div>
 
             {/* Book Cover URL */}
             <div>
