@@ -21,20 +21,27 @@ const Booksdetails = () => {
   const book = books.find((b) => b.id === id);
   // console.log(book);
 
-  const updateHandler = (bookdata) => {
-    const index = books.findIndex((b) => b.id === id);
-    // console.log(index);
+ const updateHandler = (bookdata) => {
+  const index = books.findIndex((b) => b.id === id);
 
-    setBooks((prev) => {
-      let updated = prev.map((b, i) =>
-        i === index ? { ...b, ...bookdata } : b
-      );
-      localStorage.setItem("books", JSON.stringify(updated));
-      return updated;
-    });
+  // Update books
+  const updatedBooks = books.map((b, i) =>
+    i === index ? { ...b, ...bookdata } : b
+  );
+  setBooks(updatedBooks);
+  localStorage.setItem("books", JSON.stringify(updatedBooks));
 
-    navigate("/books");
-  };
+  // Update fav separately (only if that book exists in fav)
+  const updatedFav = fav.map((b) =>
+    b.id === id ? { ...b, ...bookdata } : b
+  );
+  setfav(updatedFav);
+  localStorage.setItem("fav", JSON.stringify(updatedFav));
+
+  navigate("/books");
+};
+
+
 
   const deleteHandler = () => {
     let newBookList = books.filter((b) => b.id !== id);
