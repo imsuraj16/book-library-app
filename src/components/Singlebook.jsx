@@ -1,7 +1,13 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-const Singlebook = ({book,renderStars}) => {
+const Singlebook = ({book}) => {
+
+   const renderStars = (rating) => {
+    const filled = "⭐".repeat(Number(rating));
+    const empty = "☆".repeat(5 - Number(rating));
+    return filled + empty;
+  };
 
   
   return (

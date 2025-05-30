@@ -3,13 +3,9 @@ import { Bookcontext } from "../context/BookContext";
 import Singlebook from "../components/Singlebook";
 
 const Books = () => {
-  const [books] = useContext(Bookcontext);
+  const {books} = useContext(Bookcontext);
 
-  const renderStars = (rating) => {
-    const filled = "⭐".repeat(Number(rating));
-    const empty = "☆".repeat(5 - Number(rating));
-    return filled + empty;
-  };
+ 
 
   if (books.length > 0) {
     return (
@@ -19,7 +15,7 @@ const Books = () => {
         </h1>
         <div className="flex gap-6 flex-wrap">
           {books.map((book) => (
-            <Singlebook book={book} renderStars={renderStars} key={book.id} />
+            <Singlebook book={book} key={book.id} />
           ))}
         </div>
       </div>

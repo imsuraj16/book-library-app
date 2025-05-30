@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
 
 const Createbook = () => {
-  const [books, setBooks] = useContext(Bookcontext);
+  const {books, setBooks} = useContext(Bookcontext);
 
   const navigate = useNavigate();
 

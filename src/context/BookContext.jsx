@@ -10,12 +10,12 @@ const BookContext = (props) => {
 
   useEffect(() => {
     setBooks(JSON.parse(localStorage.getItem("books")));
-    // setfav(JSON.parse(localStorage.getItem("fav")));
+    setfav(JSON.parse(localStorage.getItem("fav")));
   }, []);
 
   return (
     <>
-      <Bookcontext.Provider value={[books, setBooks, fav, setfav]}>
+      <Bookcontext.Provider value={{books, setBooks, fav, setfav}}>
         {props.children}
       </Bookcontext.Provider>
     </>

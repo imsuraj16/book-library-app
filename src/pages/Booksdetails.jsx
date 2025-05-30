@@ -13,15 +13,13 @@ const Booksdetails = () => {
 
   const navigate = useNavigate();
 
-  const [books, setBooks, fav,setfav] = useContext(Bookcontext);
-  
-  
+  const { books, setBooks, fav, setfav } = useContext(Bookcontext);
+
   const [edit, setEdit] = useState(false);
   const { id } = useParams();
 
   const book = books.find((b) => b.id === id);
-  console.log(book);
-  
+  // console.log(book);
 
   const updateHandler = (bookdata) => {
     const index = books.findIndex((b) => b.id === id);
@@ -34,10 +32,6 @@ const Booksdetails = () => {
       localStorage.setItem("books", JSON.stringify(updated));
       return updated;
     });
-    // let updated = setBooks((prev)=>prev.map((b,i)=>(i===index ? {...b,...bookdata} : b)))
-    // console.log(a);
-
-    // console.log(bookdata);
 
     navigate("/books");
   };
@@ -46,27 +40,26 @@ const Booksdetails = () => {
     let newBookList = books.filter((b) => b.id !== id);
     localStorage.setItem("books", JSON.stringify(newBookList));
     setBooks(newBookList);
+
+    let favbooklist = books.filter((b) => b.id !== id);
+    setfav(favbooklist);
+    localStorage.setItem("fav", JSON.stringify(favbooklist));
     navigate("/books");
   };
 
-  
+  const favHandler = () => {
+    const updatedFav = [...fav, book];
+    setfav(updatedFav);
+    localStorage.setItem("fav", JSON.stringify(updatedFav));
+    navigate("/favourites")
+  };
 
-//  const favHandler = () => {
-//   const updatedFav = [...fav, book];
-//   setfav(updatedFav);
-//   // localStorage.setItem("fav", JSON.stringify(updatedFav));
-// };
+  const unFavHandler = () => {
+    const updatedFav = fav.filter((b) => b.id !== book.id); // book ko hata do
+    setfav(updatedFav);
+    localStorage.setItem("fav", JSON.stringify(updatedFav));
+  };
 
-// const unFavHandler = () => {
-//   const updatedFav = fav.filter((b) => b.id !== book.id); // book ko hata do
-//   setfav(updatedFav);
-//   // localStorage.setItem("fav", JSON.stringify(updatedFav));
-// };
-
-// console.log(fav);
-
-
-  
   // console.log(fav);
   if (edit) {
     return (
@@ -383,15 +376,17 @@ const Booksdetails = () => {
         </div>
 
         <div className="">
-          <i
-            // onClick={favHandler}
-            className="text-3xl absolute ri-heart-fill text-red-500"
-          ></i>
-
-          <i
-            // onClick={unFavHandler}
-            className="text-3xl ri-heart-line absolute left-1"
-          ></i>
+          {fav.find((b) => b.id === book.id) ? (
+            <i
+              onClick={unFavHandler}
+              className="text-3xl absolute ri-heart-fill text-red-500"
+            ></i>
+          ) : (
+            <i
+              onClick={favHandler}
+              className="text-3xl ri-heart-line absolute"
+            ></i>
+          )}
         </div>
       </div>
 
