@@ -32,6 +32,12 @@ const Navabar = () => {
         >
           Add Book
         </NavLink>
+        <NavLink
+          className={(e) => (e.isActive ? "text-yellow-800" : "")}
+          to="/favourites"
+        >
+          favourite
+        </NavLink>
       </div>
     </div>
   );

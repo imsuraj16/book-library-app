@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Bookcontext } from "../context/BookContext";
 import { useForm } from "react-hook-form";
 
@@ -13,9 +13,15 @@ const Booksdetails = () => {
 
   const navigate = useNavigate();
 
-  const [books, setBooks] = useContext(Bookcontext);
+  const [books, setBooks, fav,setfav] = useContext(Bookcontext);
+  
+  
   const [edit, setEdit] = useState(false);
   const { id } = useParams();
+
+  const book = books.find((b) => b.id === id);
+  console.log(book);
+  
 
   const updateHandler = (bookdata) => {
     const index = books.findIndex((b) => b.id === id);
@@ -36,15 +42,32 @@ const Booksdetails = () => {
     navigate("/books");
   };
 
-  const deleteHandler = (id) => {
+  const deleteHandler = () => {
     let newBookList = books.filter((b) => b.id !== id);
     localStorage.setItem("books", JSON.stringify(newBookList));
     setBooks(newBookList);
     navigate("/books");
   };
 
-  const book = books.find((b) => b.id === id);
+  
 
+//  const favHandler = () => {
+//   const updatedFav = [...fav, book];
+//   setfav(updatedFav);
+//   // localStorage.setItem("fav", JSON.stringify(updatedFav));
+// };
+
+// const unFavHandler = () => {
+//   const updatedFav = fav.filter((b) => b.id !== book.id); // book ko hata do
+//   setfav(updatedFav);
+//   // localStorage.setItem("fav", JSON.stringify(updatedFav));
+// };
+
+// console.log(fav);
+
+
+  
+  // console.log(fav);
   if (edit) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#f0ebcc] to-[#faf6e8] py-12 px-6">
@@ -341,6 +364,7 @@ const Booksdetails = () => {
             alt=""
           />
         </div>
+
         <div>
           <h1 className="text-[4rem]">{book?.title}</h1>
           <p className="text-[1.4em]">{book?.genre}</p>
@@ -356,6 +380,18 @@ const Booksdetails = () => {
           >
             Delete
           </button>
+        </div>
+
+        <div className="">
+          <i
+            // onClick={favHandler}
+            className="text-3xl absolute ri-heart-fill text-red-500"
+          ></i>
+
+          <i
+            // onClick={unFavHandler}
+            className="text-3xl ri-heart-line absolute left-1"
+          ></i>
         </div>
       </div>
 
