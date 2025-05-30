@@ -19,7 +19,7 @@ const Booksdetails = () => {
   const { id } = useParams();
 
   const book = books.find((b) => b.id === id);
-  // console.log(book);
+
 
  const updateHandler = (bookdata) => {
   const index = books.findIndex((b) => b.id === id);
@@ -58,7 +58,7 @@ const Booksdetails = () => {
     const updatedFav = [...fav, book];
     setfav(updatedFav);
     localStorage.setItem("fav", JSON.stringify(updatedFav));
-    navigate("/favourites")
+    
   };
 
   const unFavHandler = () => {
@@ -348,6 +348,7 @@ const Booksdetails = () => {
       </div>
     );
   }
+
 
   return (
     <div className="w-full">
