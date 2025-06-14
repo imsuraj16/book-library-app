@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Quotes from "../components/Quotes";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [data, setData] = useState([
@@ -21,34 +22,36 @@ const Home = () => {
     },
   ]);
 
+  const navigate = useNavigate()
+
   return (
-    <div className="flex flex-col gap-[3rem]">
-      <div className="w-full px-[3rem] flex gap-[5rem] py-[1.5rem]">
-        <div className="w-[50%] flex flex-col gap-[2rem]">
-          <h1 className="text-[4rem]">Keep the story going...</h1>
-          <p>
+    <div className="flex flex-col gap-8 md:gap-12">
+      <div className="w-full px-4 md:px-8 lg:px-12 flex flex-col lg:flex-row gap-8 lg:gap-20 py-6 md:py-8">
+        <div className="w-full lg:w-1/2 flex flex-col gap-6 md:gap-8">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl leading-tight">Keep the story going...</h1>
+          <p className="text-sm md:text-base lg:text-lg">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere,
             necessitatibus! Possimus provident tenetur beatae mollitia ducimus
             architecto sapiente, ex odit.
           </p>
-          <button className="w-fit bg-black px-[3rem] py-3 rounded-lg text-white">
+          <button onClick={()=>navigate('/books')} className="w-fit cursor-pointer bg-black px-6 md:px-8 lg:px-12 py-3 rounded-lg text-white text-sm md:text-base">
             Start reading
           </button>
         </div>
 
-        <div className="w-[50%] flex flex-col gap-4">
-          <h1 className="text-[2rem]">
-            <span className="text-[4rem] text-[#cebb3a]">Quotes</span> of the
+        <div className="w-full lg:w-1/2 flex flex-col gap-4">
+          <h1 className="text-xl md:text-2xl lg:text-3xl">
+            <span className="text-3xl md:text-4xl lg:text-6xl text-[#cebb3a]">Quotes</span> of the
             day....
           </h1>
           <Quotes />
         </div>
       </div>
 
-      <div className="w-full flex gap-[3rem] px-[3rem] overflow-x-auto">
+      <div className="w-full flex gap-4 md:gap-6 lg:gap-12 px-4 md:px-8 lg:px-12 overflow-x-auto">
         {data.map((item, index) => (
-          <div key={index} className="min-w-[18rem] p-4 rounded-xl shadow-lg float-animation">
-            <div className="w-full h-[19rem] mb-4">
+          <div key={index} className="min-w-[16rem] md:min-w-[18rem] lg:min-w-[20rem] p-4 rounded-xl shadow-lg float-animation">
+            <div className="w-full h-[16rem] md:h-[18rem] lg:h-[20rem] mb-4">
               <img
                 className="w-full h-full object-cover object-top rounded-lg hover:scale-105 duration-100 transition-all ease-in shadow-lg"
                 src={item.img}
@@ -56,7 +59,7 @@ const Home = () => {
               />
             </div>
             <div className='mb-4'>
-              <h1 className="text-[1.2rem] font-bold">{item.name}</h1>
+              <h1 className="text-lg md:text-xl font-bold">{item.name}</h1>
             </div>
           </div>
         ))}

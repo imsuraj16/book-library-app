@@ -4,7 +4,7 @@ import Mainroutes from './routes/Mainroutes'
 
 const App = () => {
   return (
-    <div className='w-full min-h-full py-[2rem] bg-[#f0ebcc] flex flex-col gap-[3rem]'>
+    <div className='w-full min-h-full bg-[#f0ebcc] flex flex-col gap-[3rem]'>
     <Navabar/>
     <Mainroutes/>
     </div>
